@@ -1,7 +1,9 @@
-from controllers.app_controller import AppController
+from controllers.app_controller import App_Controller
 import streamlit as st
 
 # Nome: Johannes Mattheus Krouwel   RA: 20.01248-9
 
-if AppController.loginStatus == False:
+if App_Controller.loginStatus == True:
+    st.title("Carrinho")
+else:
     st.title("Faça Login primeiro!")
