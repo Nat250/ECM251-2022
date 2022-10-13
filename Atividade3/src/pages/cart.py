@@ -5,5 +5,7 @@ import streamlit as st
 
 if App_Controller.loginStatus == True:
     st.title("Carrinho")
+    # Eu nao faco a menor ideia como fazer isso e provavelmente vou precisar de um gabarito depois
+    # Nada que eu fiz funciona 
 else:
     st.title("Faça Login primeiro!")
