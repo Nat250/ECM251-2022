@@ -1,5 +1,5 @@
-from models.user import User
-from controllers.app_controller import App_Controller
+from src.models.user import User
+from src.controllers.app_controller import App_Controller
 
 # Nome: Johannes Mattheus Krouwel   RA: 20.01248-9
 
@@ -20,7 +20,7 @@ class UserController():
             user_teste = User(name=name, password=password, email=None)
             for user in self.users:
                 if user.name == user_teste.name and user.password == user_teste.password:
-                    App_Controller.loginStatus(confirmed=True)
+                    App_Controller.loginStatus()
                     return True
             return False
         except TypeError:

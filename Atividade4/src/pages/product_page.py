@@ -1,11 +1,14 @@
-from controllers.app_controller import App_Controller
-from controllers.product_controller import Product_Controller
+from src.controllers.app_controller import App_Controller
+from src.controllers.product_controller import Product_Controller
 import streamlit as st
 
 # Nome: Johannes Mattheus Krouwel   RA: 20.01248-9
 
 product_Controller = Product_Controller()
-if App_Controller.loginStatus == True:
+if 'loginStatusTrue' not in st.session_state:
+    st.title("Faça Login primeiro!")
+
+else:    
     st.title("Produtos")
 
     col1, col2, col3 = st.columns(3)
@@ -42,6 +45,3 @@ if App_Controller.loginStatus == True:
         help="Clique para comprar este produto.",
         on_click=product_Controller.compra(name="Miraidon", price="R$ 99,99", url="https://archives.bulbagarden.net/media/upload/thumb/f/fb/Miraidon.png/250px-Miraidon.png") # Completar
         )
-
-else:
-    st.title("Faça Login primeiro!")
