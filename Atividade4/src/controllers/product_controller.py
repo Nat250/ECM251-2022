@@ -13,5 +13,4 @@ class Product_Controller():
         ]
 
     def compra(self,name,price,url):
-        # Nao consegui terminar, nao sei o que fazer
         pass

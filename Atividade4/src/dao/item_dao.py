@@ -31,9 +31,14 @@ class ItemDAO:
     def inserir_item(self, item):
         self.cursor = self.conn.cursor()
         self.cursor.execute("""
-            INSERT INTO Itens (id, nome, preco)
-            VALUES(?,?,?);
-        """,(item.id,item.nome,item.preco))
+            INSERT INTO Itens (
+                id, 
+                nome, 
+                preco,
+                link)
+            VALUES(
+                '{item.id}','{item.nome}','{item.preco}','{item.link}');
+        """)
         self.conn.commit()
         self.cursor.close()
 
@@ -46,7 +51,7 @@ class ItemDAO:
         item = None
         resultado = self.cursor.fetchone()
         if resultado != None:
-            item = Item(id=resultado[0], nome=resultado[1], preco=resultado[2])
+            item = Item(id=resultado[0], nome=resultado[1], preco=resultado[2], link=resultado[3])
         self.cursor.close()
         return item
 
@@ -57,6 +62,7 @@ class ItemDAO:
                 UPDATE Itens SET
                 nome = '{item.nome}',
                 preco = {item.preco}
+                link = '{item.link}'
                 WHERE id = '{item.id}'
             """)
         except:
