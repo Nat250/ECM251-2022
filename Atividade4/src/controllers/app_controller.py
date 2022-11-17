@@ -28,7 +28,7 @@ class App_Controller():
             id = None,
             id_cliente = self.cliente_pedido_atual.id_cliente,
             numero_pedido = self.cliente_pedido_atual.id_pedido,
-            data_hora = self.cliente_pedido_atual.data,
+            data_hora = self.cliente_pedido_atual.date,
             id_item = id_item,
             quantidade = quantidade
         )

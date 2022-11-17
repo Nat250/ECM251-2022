@@ -8,6 +8,7 @@ import streamlit as st
 
 # Nome: Johannes Mattheus Krouwel   RA: 20.01248-9
 
+app_Controller = App_Controller()
 product_Controller = Product_Controller()
 pedido_Controller = PedidoController()
 item_Controller = ItemController()
@@ -17,7 +18,8 @@ pedido_Cliente = PedidoCliente()
 if 'loginStatusTrue' not in st.session_state:
     st.title("Faça Login primeiro!")
 
-else:    
+else:
+
     st.title("Produtos")
 
     col1, col2, col3 = st.columns(3)
@@ -31,8 +33,8 @@ else:
         st.button(
         label="Comprar",
         help="Clique para comprar este produto.",
-        on_click=pedido_Controller.inserir_pedido,
-        kwargs={"id_item":item_Controller.pegar_id("1"), "id_cliente":user_Controller.pegar_username(username), "quantidade":quantidade_1, "numero_pedido":quantidade_1+1, "data_hora":pedido_Cliente.date}
+        on_click=app_Controller.adicionar_item_no_pedido,
+        kwargs={"id_item":item_Controller.pegar_id("1"), "quantidade":quantidade_1}
         )
 
     with col2:
@@ -44,8 +46,8 @@ else:
         st.button(
         label="Comprar",
         help="Clique para comprar este produto.",
-        on_click=pedido_Controller.inserir_pedido,
-        kwargs={"id_item":item_Controller.pegar_id("2"), "id_cliente":user_Controller.pegar_username(username), "quantidade":quantidade_2, "numero_pedido":quantidade_2+1, "data_hora":pedido_Cliente.date}
+        on_click=app_Controller.adicionar_item_no_pedido,
+        kwargs={"id_item":item_Controller.pegar_id("2"), "quantidade":quantidade_2}
         )
 
     with col3:
@@ -57,6 +59,6 @@ else:
         st.button(
         label="Comprar",
         help="Clique para comprar este produto.",
-        on_click=pedido_Controller.inserir_pedido,
-        kwargs={"id_item":item_Controller.pegar_id("3"), "id_cliente":user_Controller.pegar_username(username), "quantidade":quantidade_3, "numero_pedido":quantidade_3+1, "data_hora":pedido_Cliente.date}
+        on_click=app_Controller.adicionar_item_no_pedido,
+        kwargs={"id_item":item_Controller.pegar_id("3"), "quantidade":quantidade_3}
         )
