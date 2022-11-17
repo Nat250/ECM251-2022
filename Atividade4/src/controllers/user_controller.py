@@ -1,5 +1,6 @@
-from models.user import User
-from controllers.app_controller import App_Controller
+from src.models.user import User
+from src.dao.user_dao import UserDAO
+from src.controllers.app_controller import App_Controller
 
 # Nome: Johannes Mattheus Krouwel   RA: 20.01248-9
 
@@ -7,29 +8,42 @@ class UserController():
 
     # Carrega os dados dos usuários
     def __init__(self) -> None:
-        self.users = [
-            User(name="user exemplo", password="pass exemplo", email="exemplo@mail.com"),
-        ]
+        pass
 
     def checkUser(self,user):
         return user in self.users
 
-    def checkLogin(self, name, password):
+    def pegar_user(self, username) -> User:
+        user = UserDAO.get_instance().pegar_user(username)
+        return user
+
+    def pegar_username(self, username) -> User:
+        username = UserDAO.get_instance().pegar_username(username)
+        return username
+
+    def checkLogin(self, username, password):
         # Verifica o login do usuário
         try:
-            user_teste = User(name=name, password=password, email=None)
+            user_teste = User(username=username, password=password, email=None)
             for user in self.users:
-                if user.name == user_teste.name and user.password == user_teste.password:
-                    App_Controller.loginStatus(confirmed=True)
+                if UserDAO.login_user(user_teste.username, user_teste.password) == True:
+                    App_Controller.loginStatus()
                     return True
+        except:
             return False
-        except TypeError:
-            print("Algo deu errado:", TypeError)
 
-    def registro(self, name, password, email):
+    def registro(self, username, password, email):
         # Registra um novo usuário
         try:
-            self.users.append(User(name=name, password=password, email=email))
+            UserDAO.inserir_usuario(username,password,email)
             return True
-        except TypeError:
-            print("Algo deu errado:", TypeError)
+        except:
+            return False
+
+    def modificacao(self, username, password, email):
+        # Altera as informações de um usuário já existente
+        try:
+            UserDAO.atualizar_usuario(username,password,email)
+            return True
+        except:
+            return False
