@@ -8,12 +8,18 @@ class UserController():
 
     # Carrega os dados dos usuários
     def __init__(self) -> None:
-        self.users = [
-            User(name="user exemplo", password="pass exemplo", email="exemplo@mail.com"),
-        ]
+        pass
 
     def checkUser(self,user):
         return user in self.users
+
+    def pegar_user(self, username) -> User:
+        user = UserDAO.get_instance().pegar_user(username)
+        return user
+
+    def pegar_username(self, username) -> User:
+        username = UserDAO.get_instance().pegar_username(username)
+        return username
 
     def checkLogin(self, username, password):
         # Verifica o login do usuário
@@ -23,14 +29,21 @@ class UserController():
                 if UserDAO.login_user(user_teste.username, user_teste.password) == True:
                     App_Controller.loginStatus()
                     return True
+        except:
             return False
-        except TypeError:
-            print("Algo deu errado:", TypeError)
 
-    def registro(self, name, password, email):
+    def registro(self, username, password, email):
         # Registra um novo usuário
         try:
-            self.users.append(User(name=name, password=password, email=email))
+            UserDAO.inserir_usuario(username,password,email)
             return True
-        except TypeError:
-            print("Algo deu errado:", TypeError)
+        except:
+            return False
+
+    def modificacao(self, username, password, email):
+        # Altera as informações de um usuário já existente
+        try:
+            UserDAO.atualizar_usuario(username,password,email)
+            return True
+        except:
+            return False

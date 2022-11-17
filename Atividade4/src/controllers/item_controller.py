@@ -11,6 +11,22 @@ class ItemController:
         item = ItemDAO.get_instance().pegar_item(id)
         return item
 
+    def pegar_id(self, id) -> Item:
+        id = ItemDAO.get_instance().pegar_id(id)
+        return id
+
+    def pegar_nome(self, id) -> Item:
+        nome = ItemDAO.get_instance().pegar_nome(id)
+        return nome
+
+    def pegar_preco(self, id) -> Item:
+        preco = ItemDAO.get_instance().pegar_preco(id)
+        return preco
+
+    def pegar_link(self, id) -> Item:
+        link = ItemDAO.get_instance().pegar_link(id)
+        return link
+
     def inserir_item(self, item) -> bool:
         try:
             ItemDAO.get_instance().inserir_item(item)

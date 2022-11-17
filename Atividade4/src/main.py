@@ -58,6 +58,6 @@ with modify_user:
         st.form_submit_button(
             label="Alterar cadastro",
             help="Clique para alterar suas informações.",
-            on_click=controller.registro,
+            on_click=controller.modificacao,
             kwargs={"username":username_signup,"password":pword_signup,"email":email_signup}
         )

@@ -30,7 +30,7 @@ class UserDAO:
         self.cursor.close()
         return resultados
     
-    def inserir_usuario(self, user):
+    def inserir_usuario(self, username, password, email):
         self.cursor = self.conn.cursor()
         self.cursor.execute("""
             INSERT INTO Users (
@@ -57,6 +57,19 @@ class UserDAO:
             resultados.append(User(username=resultado[0], password=resultado[1], email=resultado[2]))
         self.cursor.close()
         return resultados
+
+    def pegar_username(self, username):
+        self.cursor = self.conn.cursor()
+        self.cursor.execute(f"""
+            SELECT * FROM Users
+            WHERE username = '{username}';
+        """)
+        username = None
+        resultado = self.cursor.fetchone()
+        if resultado != None:
+            username = User(username=resultado[0])
+        self.cursor.close()
+        return username
 
     def login_user(self, username, password):
         self.cursor = self.conn.cursor()
