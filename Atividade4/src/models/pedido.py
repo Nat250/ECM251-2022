@@ -1,3 +1,5 @@
+# Nome: Johannes Mattheus Krouwel   RA: 20.01248-9
+
 class Pedido:
     def __init__(self, id, id_item, quantidade, numero_pedido, id_cliente, data_hora) -> None:
         self._id = id

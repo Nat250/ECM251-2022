@@ -2,6 +2,8 @@ import sqlite3
 from src.models.pedido import Pedido
 from src.models.item import Item
 
+# Nome: Johannes Mattheus Krouwel   RA: 20.01248-9
+
 class PedidoDAO:
 
     _instance = None

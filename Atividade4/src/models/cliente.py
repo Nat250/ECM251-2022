@@ -1,3 +1,5 @@
+# Nome: Johannes Mattheus Krouwel   RA: 20.01248-9
+
 from datetime import datetime
 class PedidoCliente:
     def __init__(self, id_cliente, id_pedido):

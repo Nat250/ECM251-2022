@@ -1,6 +1,8 @@
 import sqlite3
 from src.models.user import User
 
+# Nome: Johannes Mattheus Krouwel   RA: 20.01248-9
+
 class UserDAO:
 
     _instance = None
@@ -28,7 +30,7 @@ class UserDAO:
         self.cursor.close()
         return resultados
     
-    def inserir_pedido(self, user):
+    def inserir_usuario(self, user):
         self.cursor = self.conn.cursor()
         self.cursor.execute("""
             INSERT INTO Users (
@@ -37,8 +39,8 @@ class UserDAO:
                 email)
             VALUES(
                 '{user.username}',
-                '{pedido.password}',
-                '{pedido.email}'
+                '{user.password}',
+                '{user.email}'
             );
         """)
         self.conn.commit()
@@ -56,7 +58,23 @@ class UserDAO:
         self.cursor.close()
         return resultados
 
-    def atualizar_pedido(self, user):
+    def login_user(self, username, password):
+        self.cursor = self.conn.cursor()
+        self.cursor.execute(f"""
+            SELECT * FROM Users
+            WHERE username = '{username}';
+        """)
+        resultados = []
+        for resultado in self.cursor.fetchall():
+            resultados.append(User(username=resultado[0], password=resultado[1], email=resultado[2]))
+            if resultados[0](User(username)) == username & resultados[0](User(password)) == password:
+                self.cursor.close()
+                return True
+            else:
+                self.cursor.close()
+                return False
+
+    def atualizar_usuario(self, user):
         try:
             self.cursor = self.conn.cursor()
             self.cursor.execute(f"""

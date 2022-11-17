@@ -1,3 +1,5 @@
+# Nome: Johannes Mattheus Krouwel   RA: 20.01248-9
+
 class Item:
     def __init__(self, id, nome, preco, link) -> None:
         self.id = id

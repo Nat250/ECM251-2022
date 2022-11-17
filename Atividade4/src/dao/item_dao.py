@@ -1,6 +1,8 @@
 import sqlite3
 from src.models.item import Item
 
+# Nome: Johannes Mattheus Krouwel   RA: 20.01248-9
+
 class ItemDAO:
 
     _instance = None

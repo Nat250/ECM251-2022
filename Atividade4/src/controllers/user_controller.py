@@ -1,4 +1,5 @@
 from src.models.user import User
+from src.dao.user_dao import UserDAO
 from src.controllers.app_controller import App_Controller
 
 # Nome: Johannes Mattheus Krouwel   RA: 20.01248-9
@@ -14,12 +15,12 @@ class UserController():
     def checkUser(self,user):
         return user in self.users
 
-    def checkLogin(self, name, password):
+    def checkLogin(self, username, password):
         # Verifica o login do usuário
         try:
-            user_teste = User(name=name, password=password, email=None)
+            user_teste = User(username=username, password=password, email=None)
             for user in self.users:
-                if user.name == user_teste.name and user.password == user_teste.password:
+                if UserDAO.login_user(user_teste.username, user_teste.password) == True:
                     App_Controller.loginStatus()
                     return True
             return False

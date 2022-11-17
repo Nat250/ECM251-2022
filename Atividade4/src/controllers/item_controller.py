@@ -1,6 +1,8 @@
 from src.models.item import Item
 from src.dao.item_dao import ItemDAO
 
+# Nome: Johannes Mattheus Krouwel   RA: 20.01248-9
+
 class ItemController:
     def __init__(self) -> None:
         pass
