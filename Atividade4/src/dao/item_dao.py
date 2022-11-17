@@ -24,7 +24,7 @@ class ItemDAO:
         """)
         resultados = []
         for resultado in self.cursor.fetchall():
-            resultados.append(Item(id=resultado[0], nome=resultado[1], preco=resultado[2]))
+            resultados.append(Item(id=resultado[0], nome=resultado[1], preco=resultado[2], link=resultado[3]))
         self.cursor.close()
         return resultados
     
@@ -77,6 +77,6 @@ class ItemDAO:
         """)
         resultados = []
         for resultado in self.cursor.fetchall():
-            resultados.append(Item(id=resultado[0], nome=resultado[1], preco=resultado[2]))
+            resultados.append(Item(id=resultado[0], nome=resultado[1], preco=resultado[2], link=resultado[3]))
         self.cursor.close()
         return resultados
